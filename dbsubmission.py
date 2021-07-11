@@ -1,3 +1,10 @@
+from werkzeug.utils import secure_filename
+import os
+def allowed_file(filename):
+    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 class BasicSubmission(object):
     def __init__(self, form_answers):
         #Profile
@@ -72,3 +79,12 @@ class BasicSubmission(object):
         print(self.tweng2)
         print(self.reng2)
         print(self.othereng2)
+
+    def AddImage(self, file):
+        UPLOAD_FOLDER = '/'
+        self.filename = secure_filename(file.filename)
+        self.file = file
+
+    def ValidateFile(self, file):
+        #print("allowed, saving")
+        self.AddImage(file)

@@ -15,6 +15,8 @@ def index():
 def home():
     submission = BasicSubmission(request.form)
     submission.PrintAll()
+    print(request.files)
+    submission.ValidateFile(request.files['imageupload'])
     return render_template('home.html')
 
 if __name__ == "__main__":
