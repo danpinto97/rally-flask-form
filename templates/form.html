@@ -7,7 +7,9 @@
 
   <hr class="my-1">
 
+<!-- START FORM -->
     <form class="form-group" action="/home" method="POST" novalidate>
+      <!-- START PROFILE -->
       <h1 class= "h3 mb-3 front-weight-normal">Profile</h1>
       <div class="row g-3">
         <div class="col-auto">
@@ -59,9 +61,9 @@
           </div>
 
           </div>
-
+        <!-- END PROFILE -->
         <hr class="my-4">
-
+        <!-- START CURRENT CONTENT -->
         <h1 class= "h3 mb-3 front-weight-normal">Current Content</h1>
         <div class="row g-3">
 
@@ -142,18 +144,108 @@
           </div>
 
         </div>
+  <!-- END CURRENT CONTENT -->
 
           <hr class="my-4">
+            <!-- START USER ENGAGEMENT -->
           <h1 class= "h3 mb-3 front-weight-normal">User Engagement</h1>
 
           <div class="row g-3">
-
+            <div class="col-auto">
+            <select class="form-select" aria-label="usereng" name="usereng">
+            <option selected>Do you engage your users?</option>
+            <option value=1> Yes </option>
+            <option value=2> No </option>
+            </select>
+            </div>
           </div>
 
+        <br> Engagement Platforms </br>
+
+        <!-- First row of platform q's -->
+        <div class="row g-3">
+          <div class="col-auto">
+        <div class="form-check form-check-inline" >
+          <input class="form-check-input" type="checkbox" name="disceng1" value="Discord">
+          <label class="form-check-label" for="disceng1">Discord</label>
+        </div>
+        </div>
+        <div class="col-auto">
+      <div class="form-check form-check-inline" >
+        <input class="form-check-input" type="checkbox" name="tceng1" value="Twitch">
+        <label class="form-check-label" for="tceng">Twitch</label>
+      </div>
+      </div>
+        <div class="col-auto">
+      <div class="form-check form-check-inline" >
+        <input class="form-check-input" type="checkbox" name="tteng1" value="TikTok">
+        <label class="form-check-label" for="tteng1">TikTok</label>
+      </div>
+      </div>
+      <div class="col-auto">
+    <div class="form-check form-check-inline" >
+      <input class="form-check-input" type="checkbox" name="tweng1" value="Twitter">
+      <label class="form-check-label" for="tweng1">Twitter</label>
+    </div>
+    </div>
+    <div class="col-auto">
+  <div class="form-check form-check-inline" >
+    <input class="form-check-input" type="checkbox" name="reng1" value="Reddit">
+    <label class="form-check-label" for="reng1">Reddit</label>
+  </div>
+  </div>
+        <div class="col-auto">
+          <input type="text" class="form-control" placeholder="Other" name=othereng1>
+        </div>
+        </div>
+
+        <br> Most Popular Engagement Platform </br>
+        <!-- Second row of platform qs-->
+        <div class="row g-3">
+          <div class="col-auto">
+        <div class="form-check form-check-inline" >
+          <input class="form-check-input" type="radio" name="disceng2" value="Discord">
+          <label class="form-check-label" for="disceng2">Discord</label>
+        </div>
+        </div>
+        <div class="col-auto">
+      <div class="form-check form-check-inline" >
+        <input class="form-check-input" type="radio" name="tceng2" value="Twitch">
+        <label class="form-check-label" for="tceng2">Twitch</label>
+      </div>
+      </div>
+        <div class="col-auto">
+      <div class="form-check form-check-inline" >
+        <input class="form-check-input" type="radio" name="tteng2" value="TikTok">
+        <label class="form-check-label" for="tteng2">TikTok</label>
+      </div>
+      </div>
+      <div class="col-auto">
+    <div class="form-check form-check-inline" >
+      <input class="form-check-input" type="radio" name="tweng2" value="Twitter">
+      <label class="form-check-label" for="tweng2">Twitter</label>
+    </div>
+    </div>
+    <div class="col-auto">
+  <div class="form-check form-check-inline" >
+    <input class="form-check-input" type="radio" name="reng2" value="Reddit">
+    <label class="form-check-label" for="reng2">Reddit</label>
+  </div>
+  </div>
+  <div class="col-auto">
+<div class="form-check form-check-inline" >
+  <input class="form-check-input" type="radio" name="othereng2" value="Other">
+  <label class="form-check-label" for="othereng2">Other</label>
+</div>
+</div>
+  </div>
+
+  <!-- END USER ENGAGEMENT -->
+        <hr class="my-4">
         <div class="col-auto">
           <button type="submit" class="btn btn-secondary mb-3">Submit</button>
         </div>
-
     </form>
+      <!-- END FORM -->
 </div>
 {% endblock %}
