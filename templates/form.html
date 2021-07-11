@@ -1,0 +1,159 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="container">
+  <div class="jumbotron text-center">
+    <h1>Rally Interview</h1>
+  </div>
+
+  <hr class="my-1">
+
+    <form class="form-group" action="/home" method="POST" novalidate>
+      <h1 class= "h3 mb-3 front-weight-normal">Profile</h1>
+      <div class="row g-3">
+        <div class="col-auto">
+          <input type="text" class="form-control" placeholder="Name" name= name>
+        </div>
+        <div class="col-auto">
+          <input type="number" class="form-control" placeholder="Age" name=age>
+        </div>
+
+          <div class="col-md-2">
+          <select class="form-select" aria-label="gender" name="gender">
+          <option selected>Gender</option>
+          <option value=1>Male</option>
+          <option value=2>Female</option>
+          <option value=3>Other</option>
+          </select>
+          </div>
+          <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Race" name=race>
+          </div>
+          <div class="col-auto">
+            <input type="text" class="form-control" placeholder="State" name=state>
+          </div>
+
+          <div class="col-md-2">
+          <select class="form-select" aria-label="edu" name="edu">
+          <option selected>Highest Education</option>
+          <option value=1> College</option>
+          <option value=2>High School</option>
+          <option value=3>Other</option>
+          </select>
+          </div>
+
+          <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Discord Username" name=discord>
+          </div>
+
+          <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Social Media Usernames" name=media>
+          </div>
+
+          <div class="col-md-2">
+          <select class="form-select" aria-label="timeinv" name="investingtime">
+          <option selected>Time Investing</option>
+          <option value=1> Less than a year</option>
+          <option value=2> Over a year</option>
+          <option value=3> Over 3 years</option>
+          </select>
+          </div>
+
+          </div>
+
+        <hr class="my-4">
+
+        <h1 class= "h3 mb-3 front-weight-normal">Current Content</h1>
+        <div class="row g-3">
+
+          <div class="col-auto">
+            <input type="number" class="form-control" placeholder="Following Count" name=followers>
+          </div>
+
+          <div class="col-3">
+            <input type="number" class="form-control" placeholder="Hours Creating Content per Week" name=contenttime>
+          </div>
+
+          <div class="col-auto">
+            <input type="number" class="form-control" placeholder="Total Number of Posts" name=postcount>
+          </div>
+
+          <div class="col-auto">
+            <input type="number" class="form-control" placeholder="Posts per Week" name=ppw>
+          </div>
+        </div>
+        <br> </br>
+        <div class="col-sm-2">
+          <label for="lastpostdate" class="form-label">Date of last post</label>
+          <input type="date" class="form-control" placeholder="lastpostdate" name=lastpostdate>
+        </div>
+
+        <br>Streaming Specific </br>
+        <div class="row g-3">
+
+          <div class="col-auto">
+          <select class="form-select" aria-label="charts_displays" name="charts_displays">
+          <option selected>Utilize Charts / Displays?</option>
+          <option value=1> Yes </option>
+          <option value=2> No </option>
+          </select>
+          </div>
+
+          <div class="col-auto">
+          <select class="form-select" aria-label="facecam" name="facecam">
+          <option selected>Use Facecam?</option>
+          <option value=1> Yes </option>
+          <option value=2> No </option>
+          </select>
+          </div>
+
+          <div class="col-auto">
+          <select class="form-select" aria-label="screenrec" name="screenrec">
+          <option selected>Use Screen Recording?</option>
+          <option value=1> Yes </option>
+          <option value=2> No </option>
+          </select>
+          </div>
+
+          <div class="col-auto">
+          <select class="form-select" aria-label="qanda" name="qanda">
+          <option selected>Live Q&A ?</option>
+          <option value=1> Yes </option>
+          <option value=2> No </option>
+          </select>
+          </div>
+
+          <div class="col-auto">
+          <select class="form-select" aria-label="livetrading" name="livetrading">
+          <option selected>Live Trading?</option>
+          <option value=1> Yes </option>
+          <option value=2> No </option>
+          </select>
+          </div>
+
+          <div class="col-auto">
+          <select class="form-select" aria-label="avgpostlength" name="avgpostlength">
+          <option selected>Average Post Length</option>
+          <option value=1> 1 Minute or Less</option>
+          <option value=2> 5 Minutes or Less</option>
+          <option value=3> 30 Minutes or Less</option>
+          <option value=4> 1 Hour</option>
+          <option value=4> 3 Hours or more</option>
+          </select>
+          </div>
+
+        </div>
+
+          <hr class="my-4">
+          <h1 class= "h3 mb-3 front-weight-normal">User Engagement</h1>
+
+          <div class="row g-3">
+
+          </div>
+
+        <div class="col-auto">
+          <button type="submit" class="btn btn-secondary mb-3">Submit</button>
+        </div>
+
+    </form>
+</div>
+{% endblock %}
