@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="container">
+  <div class="jumbotron text-center">
+    <h1>Rally Interview</h1>
+  </div>
+
+  <hr class="my-1">
+
+<!-- START FORM -->
+    <form action="/home" method="POST" enctype="multipart/form-data" novalidate>
+      <!-- START PROFILE -->
+      <h1 class= "h3 mb-3 front-weight-normal">Profile</h1>
+      <div class="row g-3">
+        <div class="col-auto">
+          <input type="text" class="form-control" placeholder="Name" name= name>
+        </div>
+        <div class="col-auto">
+          <input type="number" class="form-control" placeholder="Age" name=age>
+        </div>
+        </div>
+
+        <br> Are you Graduated?</br>
+        <div class="col-md-2">
+        <select class="form-select" aria-label="grad" name="grad">
+        <option value=0> Yes </option>
+        <option value=1> No </option>
+        </select>
+        </div>
+
+        <div class="col-sm-2">
+          <label for="dob" class="form-label">Date of Birth</label>
+          <input type="date" class="form-control" placeholder="dob" name=dob>
+        </div>
+
+
+    <br> Best Day for Meeting </br>
+    <div class="row g-3">
+          <div class="col-auto">
+        <div class="form-check form-check-inline" >
+          <input class="form-check-input" type="checkbox" name="Monday" value="Monday">
+          <label class="form-check-label" for="Monday">Monday</label>
+        </div>
+        </div>
+        <div class="col-auto">
+      <div class="form-check form-check-inline" >
+        <input class="form-check-input" type="checkbox" name="Tuesday" value="Tuesday">
+        <label class="form-check-label" for="Tuesday">Tuesday</label>
+      </div>
+      </div>
+        <div class="col-auto">
+      <div class="form-check form-check-inline" >
+        <input class="form-check-input" type="checkbox" name="Wednesday" value="Wednesday">
+        <label class="form-check-label" for="Wednesday">Wednesday</label>
+      </div>
+      </div>
+      <div class="col-auto">
+    <div class="form-check form-check-inline" >
+      <input class="form-check-input" type="checkbox" name="Thursday" value="Thursday">
+      <label class="form-check-label" for="Thursday">Thursday</label>
+    </div>
+    </div>
+    <div class="col-auto">
+  <div class="form-check form-check-inline" >
+    <input class="form-check-input" type="checkbox" name="Friday" value="Friday">
+    <label class="form-check-label" for="Friday">Friday</label>
+  </div>
+  </div>
+  <div class="col-auto">
+<div class="form-check form-check-inline" >
+  <input class="form-check-input" type="checkbox" name="Saturday" value="Saturday">
+  <label class="form-check-label" for="Saturday">Saturday</label>
+</div>
+</div>
+<div class="col-auto">
+<div class="form-check form-check-inline" >
+<input class="form-check-input" type="checkbox" name="Sunday" value="Sunday">
+<label class="form-check-label" for="Sunday">Sunday</label>
+</div>
+</div>
+  </div>
+
+  <!-- END USER ENGAGEMENT -->
+        <hr class="my-4">
+        <div class="col-auto">
+          <button type="submit" class="btn btn-secondary mb-3">Submit</button>
+        </div>
+    </form>
+      <!-- END FORM -->
+</div>
+{% endblock %}

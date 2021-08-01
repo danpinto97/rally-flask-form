@@ -88,3 +88,14 @@ class BasicSubmission(object):
     def ValidateFile(self, file):
         #print("allowed, saving")
         self.AddImage(file)
+
+class InternalFormSubmission(object):
+    def __init__(self, form_answers):
+        self.original_form = form_answers
+        self.name = form_answers.get("name")
+        self.dob = form_answers.get("dob")
+        #self.meeting = form_answers.get("meeting")
+        delf.grad = form_answers.get("grad")
+
+    def PrintAll(self):
+        print(form_answers)
