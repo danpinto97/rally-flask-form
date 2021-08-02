@@ -13,10 +13,12 @@ def index():
 
 @app.route('/home', methods= ['POST'])
 def home():
-    submission = InternalFormSubmission(request.form)
-    submission.PrintAll()
+    print(request.form)
+    #submission = InternalFormSubmission(request.form)
+    #submission.PrintAll()
     #print(request.files)
     #submission.ValidateFile(request.files['imageupload'])
+    submission.SubmitAnswers()
     return render_template('home.html')
 
 if __name__ == "__main__":

@@ -1,5 +1,9 @@
 from werkzeug.utils import secure_filename
+from psycopg2.extras import execute_values
 import os
+import psycopg2
+import json
+
 def allowed_file(filename):
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
     return '.' in filename and \
@@ -45,41 +49,6 @@ class BasicSubmission(object):
         self.reng2 = form_answers.get("reng2")
         self.othereng2 = form_answers.get("othereng2")
 
-
-    def PrintAll(self):
-        print(self.name)
-        print(self.age)
-        print(self.gender)
-        print(self.race)
-        print(self.state)
-        print(self.edu)
-        print(self.discord)
-        print(self.media)
-        print(self.investingtime)
-
-        print(self.followers)
-        print(self.contenttime)
-        print(self.postcount)
-        print(self.ppw)
-        print(self.lastpostdate)
-        print(self.charts_displays)
-        print(self.screenrec)
-        print(self.qanda)
-        print(self.livetrading)
-        print(self.avgpostlength)
-
-        print(self.usereng)
-        print(self.disceng1)
-        print(self.tceng1)
-        print(self.tweng1)
-        print(self.reng1)
-        print(self.othereng1)
-        print(self.disceng2)
-        print(self.tceng2)
-        print(self.tweng2)
-        print(self.reng2)
-        print(self.othereng2)
-
     def AddImage(self, file):
         UPLOAD_FOLDER = '/'
         self.filename = secure_filename(file.filename)
@@ -90,12 +59,38 @@ class BasicSubmission(object):
         self.AddImage(file)
 
 class InternalFormSubmission(object):
+    def ConnectDb(self):
+        f = open("credentials.json")
+        creds = json.load(f)
+        db_host = creds['db_credentials']["db_host"]
+        db_name = creds['db_credentials']["db_name"]
+        db_user = creds['db_credentials']["db_user"]
+        db_pass = creds['db_credentials']["db_pass"]
+        db_port = creds['db_credentials']["db_port"]
+        conn = psycopg2.connect(database= db_name, user= db_user, password= db_pass, host= db_host, port= db_port)
+        return conn
+
     def __init__(self, form_answers):
         self.original_form = form_answers
         self.name = form_answers.get("name")
         self.dob = form_answers.get("dob")
         #self.meeting = form_answers.get("meeting")
-        delf.grad = form_answers.get("grad")
+        self.grad = form_answers.get("grad")
 
     def PrintAll(self):
         print(form_answers)
+
+    def SubmitAnswers(self):
+        conn = self.ConnectDb()
+        cur = conn.cursor()
+        #If user already exists do nothing (don't insert) maybe want to update it instead?
+        cur.execute("INSERT INTO survey_model_001.users (username) VALUES (%s) ON CONFLICT DO NOTHING", (self.name,))
+        conn.commit()
+        cur.execute("SELECT * FROM survey_model_001.users WHERE username = %s", (self.name,))
+        user = cur.fetchone()
+        user_id = user[0]
+        execute_values(cur,
+            "INSERT INTO survey_model_001.answers (user_id, question_option_id, answer_numeric, answer_text, answer_yn) VALUES %s",
+            [(user_id, 1, 1, self.name, False), (user_id, 2, 1, self.dob, False), (user_id, 5, 1, 1, self.grad)])
+        conn.commit()
+        conn.close()
