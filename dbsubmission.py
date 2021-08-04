@@ -72,10 +72,6 @@ class InternalFormSubmission(object):
 
     def __init__(self, form_answers):
         self.original_form = form_answers
-        self.name = form_answers.get("name")
-        self.dob = form_answers.get("dob")
-        #self.meeting = form_answers.get("meeting")
-        self.grad = form_answers.get("grad")
 
     def PrintAll(self):
         print(form_answers)
@@ -84,13 +80,20 @@ class InternalFormSubmission(object):
         conn = self.ConnectDb()
         cur = conn.cursor()
         #If user already exists do nothing (don't insert) maybe want to update it instead?
-        cur.execute("INSERT INTO survey_model_001.users (username) VALUES (%s) ON CONFLICT DO NOTHING", (self.name,))
+        cur.execute("INSERT INTO survey_model_001.users (username) VALUES (%s) ON CONFLICT DO NOTHING", (self.original_form["1"],))
         conn.commit()
-        cur.execute("SELECT * FROM survey_model_001.users WHERE username = %s", (self.name,))
+        cur.execute("SELECT * FROM survey_model_001.users WHERE username = %s", (self.original_form["1"],))
         user = cur.fetchone()
         user_id = user[0]
+        insert_list = []
+        for question_option_id, answer in self.original_form.items():
+            insert_list.append((user_id, question_option_id, 0, answer, False))
         execute_values(cur,
             "INSERT INTO survey_model_001.answers (user_id, question_option_id, answer_numeric, answer_text, answer_yn) VALUES %s",
-            [(user_id, 1, 1, self.name, False), (user_id, 2, 1, self.dob, False), (user_id, 5, 1, 1, self.grad)])
+            insert_list)
+        #execute_values(cur,
+        #    "INSERT INTO survey_model_001.answers (user_id, question_option_id, answer_numeric, answer_text, answer_yn) VALUES %s",
+        #    [(user_id, 1, 1, self.original_form.get(), False), (user_id, 2, 1, self.dob, False), (user_id, 5, 1, 1, self.grad)])
+
         conn.commit()
         conn.close()
